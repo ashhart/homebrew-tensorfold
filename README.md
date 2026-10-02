@@ -25,7 +25,7 @@ The install has no model weights in it. TensorFold downloads a model to the Hugg
 serve or pull it, for example:
 
 ```sh
-tensorfold serve Vontra/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-MLX-4bit
+tensorfold serve TensorFold/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-MLX-4bit
 ```
 
 ## Upgrade

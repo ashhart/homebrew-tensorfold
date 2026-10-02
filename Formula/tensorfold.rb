@@ -3,8 +3,8 @@ class Tensorfold < Formula
 
   desc "Fast, exact LLM decoding on Apple silicon behind an OpenAI-compatible endpoint"
   homepage "https://github.com/ashhart/TensorFold"
-  url "https://github.com/ashhart/TensorFold/archive/refs/tags/v0.6.2.tar.gz"
-  sha256 "b8fdfa81ed3b4e17cc2224beeb9703850cc355ab02688031934368a9ca720efb"
+  url "https://github.com/ashhart/TensorFold/archive/refs/tags/v0.6.3.tar.gz"
+  sha256 "c2e869a83722958120cc5b9f35356c80f1824e1fff5e44c0e264973ebd7bbafc"
   license "Apache-2.0"
   head "https://github.com/ashhart/TensorFold.git", branch: "main"
 
@@ -14,16 +14,17 @@ class Tensorfold < Formula
 
   def install
     # pip resolves TensorFold's pinned MLX wheels into an environment with no pip of its own, so only brew changes it
+    # the tui extra is installed too: `tensorfold tui` needs it and this environment cannot add it later
     venv = virtualenv_create(libexec, python3, system_site_packages: false)
     system python3, "-m", "pip", "--python=#{venv.root}/bin/python", "install", "--no-cache-dir", "--prefer-binary",
-           buildpath
+           "#{buildpath}[tui]"
     bin.install_symlink libexec/"bin/tensorfold"
   end
 
   def caveats
     <<~EOS
       Models download to the Hugging Face cache on first use, for example:
-        tensorfold serve Vontra/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-MLX-4bit
+        tensorfold serve TensorFold/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-MLX-4bit
       Upgrade with `brew upgrade tensorfold`.
     EOS
   end
@@ -35,7 +36,7 @@ class Tensorfold < Formula
     output = shell_output("#{bin}/tensorfold info #{testpath}/nemotron")
     assert_match "family       Nemotron 3.5 Lightning", output
     assert_match "runs on      Apple Silicon (MLX)", output
-    assert_match "model    Vontra/", shell_output("#{bin}/tensorfold models")
+    assert_match "model    TensorFold/", shell_output("#{bin}/tensorfold models")
     system libexec/"bin/python", "-c", "import mlx.core as mx; assert (mx.array(2) + 3).item() == 5"
   end
 end
