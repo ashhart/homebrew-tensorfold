@@ -3,8 +3,8 @@ class Tensorfold < Formula
 
   desc "Fast, exact LLM decoding on Apple silicon behind an OpenAI-compatible endpoint"
   homepage "https://github.com/ashhart/TensorFold"
-  url "https://github.com/ashhart/TensorFold/archive/refs/tags/v0.6.5.tar.gz"
-  sha256 "0fca96460bff6b6ffae52085922422f360aca2243392983723b9783e6abab567"
+  url "https://github.com/ashhart/TensorFold/archive/refs/tags/v0.6.6.tar.gz"
+  sha256 "cdf6b1603a43bd6b8e2786bb89d218554e271903ec63c152aa8097b87166aa9c"
   license "Apache-2.0"
   head "https://github.com/ashhart/TensorFold.git", branch: "main"
 
