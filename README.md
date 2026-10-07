@@ -1,7 +1,7 @@
 # homebrew-tensorfold
 
 Homebrew tap for [TensorFold](https://github.com/ashhart/TensorFold), an OpenAI-compatible LLM server for Apple
-silicon Macs.
+silicon Macs. From 1.0.0 it installs the native binary, with no Python or MLX.
 
 ## Install
 
@@ -16,15 +16,23 @@ brew tap ashhart/tensorfold
 brew install tensorfold
 ```
 
-You need an Apple silicon Mac on macOS 14 or newer. The formula puts TensorFold and its Python packages, MLX
-included, in a private environment that runs on Homebrew's Python 3.14.
+You need an Apple silicon Mac on macOS 13 or newer. The formula installs the release archive's `tensorfold-native`
+binary and links it as `tensorfold`.
+
+The Python engine stays available at 0.6.6:
+
+```sh
+brew install ashhart/tensorfold/tensorfold@0.6
+```
+
+It is keg-only, so it doesn't replace the native `tensorfold`.
 
 ## Models
 
-The install has no model weights in it. TensorFold downloads a model to the Hugging Face cache the first time you
-serve or pull it, for example:
+The install has no model weights in it. Download a model into the Hugging Face cache, then serve it:
 
 ```sh
+tensorfold pull TensorFold/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-MLX-4bit
 tensorfold serve TensorFold/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-MLX-4bit
 ```
 
@@ -35,7 +43,7 @@ brew update
 brew upgrade tensorfold
 ```
 
-`tensorfold update` is for pip installs. Homebrew installs upgrade through brew.
+Homebrew installs upgrade through brew.
 
 ## Uninstall
 
