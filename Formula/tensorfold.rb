@@ -1,8 +1,8 @@
 class Tensorfold < Formula
   desc "Native TensorFold inference server for Apple Silicon"
   homepage "https://github.com/ashhart/TensorFold"
-  url "https://github.com/ashhart/TensorFold/releases/download/v1.0.5/tensorfold-1.0.5-macos-arm64.tar.gz"
-  sha256 "0fa38f5765725ed727b3c3511aebbdc2b5851034d09164d0d63731612176f7b0"
+  url "https://github.com/ashhart/TensorFold/releases/download/v1.0.6/tensorfold-1.0.6-macos-arm64.tar.gz"
+  sha256 "52647ad1a312364a1862ac272965190e36b798a125d180716911dcfa052f37bb"
   license "Apache-2.0"
 
   depends_on arch: :arm64
@@ -26,5 +26,6 @@ class Tensorfold < Formula
   test do
     assert_equal "tensorfold-native #{version}", shell_output("#{bin}/tensorfold-native --version").strip
     assert_match "serve MODEL", shell_output("#{bin}/tensorfold --help")
+    assert_path_exists libexec/"lib/libtfgrammar.dylib"
   end
 end
