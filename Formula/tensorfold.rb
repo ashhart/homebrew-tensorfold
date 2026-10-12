@@ -1,8 +1,8 @@
 class Tensorfold < Formula
   desc "Native TensorFold inference server for Apple Silicon"
   homepage "https://github.com/ashhart/TensorFold"
-  url "https://github.com/ashhart/TensorFold/releases/download/v1.0.7/tensorfold-1.0.7-macos-arm64.tar.gz"
-  sha256 "d25750d12558f4e31b2d304ac1f2a326c020982e061867f1c4caf0c7ce7874f2"
+  url "https://github.com/ashhart/TensorFold/releases/download/v1.0.8/tensorfold-1.0.8-macos-arm64.tar.gz"
+  sha256 "0dd733eb80bf6f2fac76bae2b0fff5c0e10a5d9753864c90fe603afcbcccca69"
   license "Apache-2.0"
 
   depends_on arch: :arm64
